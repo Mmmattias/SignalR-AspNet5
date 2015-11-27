@@ -1,25 +1,11 @@
-using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using Microsoft.AspNet.Http;
 
 namespace Orebranch.Hubs
 {
     [HubName("chatHub")]
     public class ChatHub : Hub<IChatClient>
     {
-        
-        /*
-        public override Task OnConnected()
-        {
-            var address = "Hur får man denna nu för tiden?";
-
-            Clients.Others.Broadcast(string.Format("{0} connected", address));
-            
-            return base.OnConnected();
-        }
-        */
-
         public void SendMessage(ChatMessageModel model)
         {
             Clients.All.Broadcast(string.Format("{0}: {1}", model.Name, model.Message));
